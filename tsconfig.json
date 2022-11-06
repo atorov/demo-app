@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    // "lib": [],
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "outDir": "./build/public",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+  },
+  "exclude": [
+    "node_modules",
+    "__storage__",
+    "build",
+    "dist",
+  ]
+}

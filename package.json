@@ -10,9 +10,9 @@
   "author": "atorov",
   "license": "MIT",
   "scripts": {
-    "predev:be": "npm run check",
-    "dev:be": "nodemon -r dotenv/config -r esbuild-register src/api/app.ts",
-    "start:be": "node -r dotenv/config -r esbuild-register ./src/api/app.ts",
+    "predev:api": "npm run check",
+    "dev:api": "nodemon -r dotenv/config -r esbuild-register src/api/app.ts",
+    "start:api": "node -r dotenv/config -r esbuild-register ./src/api/app.ts",
     "predev:fe": "npm run check",
     "dev:fe": "nodemon --watch webpack.*.js --exec \"BUILD_ENV=local NODE_ENV=development PORT=9080 webpack serve --progress\"",
     "prebuild:fe": "npm run check && npm run clean",

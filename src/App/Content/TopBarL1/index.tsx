@@ -19,6 +19,8 @@ const TopBarL1 = () => {
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
+                height: '60px',
+                minHeight: '60px',
                 borderBottom: '1px solid lightgrey',
                 overflow: 'hidden',
             }}

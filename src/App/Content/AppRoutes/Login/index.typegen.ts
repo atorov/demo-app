@@ -20,13 +20,13 @@ export interface Typegen0 {
     login: "done.invoke.login.logging_in:invocation[0]";
   };
   missingImplementations: {
-    actions: "onEntryDone";
+    actions: "onDoneEntry";
     services: "login";
     guards: "isAuth";
     delays: never;
   };
   eventsCausingActions: {
-    onEntryDone: "xstate.after(0)#login.done";
+    onDoneEntry: "xstate.after(0)#login.done";
   };
   eventsCausingServices: {
     login: "LOGIN";

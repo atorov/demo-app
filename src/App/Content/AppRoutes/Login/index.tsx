@@ -88,9 +88,9 @@ const loginMachine = createMachine({
         },
         done: {
             // type: 'final',
-            // entry: 'onEntryDone',
+            // entry: 'onDoneEntry',
             after: {
-                0: { actions: 'onEntryDone' },
+                0: { actions: 'onDoneEntry' },
             },
         },
     },
@@ -104,14 +104,13 @@ const Login = () => {
 
     const [loginMachineState, loginMachineSend] = useMachine(loginMachine, {
         actions: {
-            onEntryDone: (context) => {
+            onDoneEntry: (context) => {
                 if (!isAuth) {
                     setAuthState({
                         status: 'authenticated',
                         data: context.loginData,
                     })
                 }
-
                 const { state: locationState } = location as Location & { state: { from?: { pathname?: string } } | null }
                 const fromPathname = locationState?.from?.pathname ?? '/'
                 navigate(fromPathname, { replace: true })

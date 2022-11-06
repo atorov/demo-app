@@ -8,8 +8,12 @@ export interface Typegen0 {
       data: unknown;
       __tip: "See the XState TS docs to learn how to strongly type this.";
     };
-    "xstate.after(550)#data.pre_loading": {
-      type: "xstate.after(550)#data.pre_loading";
+    "error.platform.data.loading:invocation[0]": {
+      type: "error.platform.data.loading:invocation[0]";
+      data: unknown;
+    };
+    "xstate.after(0)#data.pre_loading": {
+      type: "xstate.after(0)#data.pre_loading";
     };
     "xstate.init": { type: "xstate.init" };
   };
@@ -17,17 +21,19 @@ export interface Typegen0 {
     load: "done.invoke.data.loading:invocation[0]";
   };
   missingImplementations: {
-    actions: never;
+    actions: "onErrorEntry";
     services: "load";
     guards: never;
     delays: never;
   };
-  eventsCausingActions: {};
+  eventsCausingActions: {
+    onErrorEntry: "error.platform.data.loading:invocation[0]";
+  };
   eventsCausingServices: {
-    load: "xstate.after(550)#data.pre_loading";
+    load: "xstate.after(0)#data.pre_loading";
   };
   eventsCausingGuards: {};
   eventsCausingDelays: {};
-  matchesStates: "done" | "loading" | "pre_loading";
+  matchesStates: "done" | "error" | "loading" | "pre_loading";
   tags: never;
 }

@@ -6,7 +6,7 @@ declare const APP_NAME: string
 export type AuthState = {
     status: 'not_authenticated' | 'authenticated'
     data?: Partial<{
-        access_token: string
+        accessToken: string
     }>
 }
 

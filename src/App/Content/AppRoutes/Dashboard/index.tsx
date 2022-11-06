@@ -61,7 +61,7 @@ const Dashboard = () => {
         },
         services: {
             load: async () => {
-                const url = '/api/v1/data'
+                const url = 'https://demo-app-production.up.railway.app/api/v1/data'
                 const res: any = await fetch(
                     url,
                     {

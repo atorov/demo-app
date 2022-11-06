@@ -75,15 +75,15 @@ const loginMachine = createMachine({
                 onDone: {
                     target: 'done',
                     actions: assign({
-                        loginData: (_: LoginMachineContext, event) => (event.data?.data ?? event.data) as LoginMachineContext['loginData'],
+                        loginData: (_, event) => (event.data) as LoginMachineContext['loginData'],
                     }),
                 },
-                onError: {
-                    target: 'entering_credentials',
-                    actions: assign({
-                        errorMessage: () => 'Invalid credentials, could not authenticate!',
-                    }),
-                },
+                // onError: {
+                //     target: 'entering_credentials',
+                //     actions: assign({
+                //         errorMessage: () => 'Invalid credentials, could not authenticate!',
+                //     }),
+                // },
             },
         },
         done: {

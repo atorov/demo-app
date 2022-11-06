@@ -1,3 +1,4 @@
+import axios from 'axios'
 import crypto from 'crypto'
 import debug from 'debug'
 import type { Response, Request, NextFunction } from 'express'
@@ -29,15 +30,12 @@ async function checkAuth(req: Request, res: Response, next: NextFunction) {
 
     const url = 'https://uman-api-production.up.railway.app/api/auth'
     try {
-        const authRes = await fetch(url, {
+        await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         })
         cache.set(hash, true, 60 * 60 * 12)
-        if (!authRes.ok) {
-            throw new Error()
-        }
         return next()
     }
     catch (reason) {

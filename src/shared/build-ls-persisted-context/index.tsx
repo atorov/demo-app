@@ -12,7 +12,7 @@ function loadPersistedData<Data>(storageKey: string, initData: Data) {
     }
     catch (reason) {
         const msg = '::: Load state error!'
-        console.error(msg, reason)
+        console.error('::: Error:', msg, reason)
     }
     return persistedData
 }
@@ -29,7 +29,7 @@ function saveData<Data>(storageKey: string, data: Data) {
     }
     catch (reason) {
         const msg = '::: Save state error!'
-        console.error(msg, reason)
+        console.error('::: Error:', msg, reason)
     }
 }
 

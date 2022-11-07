@@ -14,7 +14,7 @@
     "dev:api": "nodemon -r dotenv/config -r esbuild-register src/api/app.ts",
     "start:api": "node -r dotenv/config -r esbuild-register ./src/api/app.ts",
     "predev:ws": "npm run check",
-    "dev:ws": "nodemon -r dotenv/config -r esbuild-register src/ws",
+    "dev:ws": "nodemon -r dotenv/config -r esbuild-register src/ws/index.ts",
     "start:ws": "node -r dotenv/config -r esbuild-register src/ws",
     "predev:fe": "npm run check",
     "dev:fe": "nodemon --watch webpack.*.js --exec \"BUILD_ENV=local NODE_ENV=development PORT=9080 webpack serve --progress\"",
@@ -43,6 +43,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.2.2",
+    "ws": "^8.11.0",
     "xstate": "^4.33.4"
   },
   "devDependencies": {

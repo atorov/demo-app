@@ -1,17 +1,7 @@
-import {
-    Link,
-    useNavigate,
-    useMatch,
-} from 'react-router-dom'
 import { useAuthContext } from '../../auth-context'
 
 const TopBarL1 = () => {
-    console.log()
     const [, , { isAuth, logout }] = useAuthContext()
-
-    const rootMatch = useMatch('/')
-    const dashboardMatch = useMatch('/dashboard')
-    const navigate = useNavigate()
 
     return (
         <header
@@ -35,18 +25,6 @@ const TopBarL1 = () => {
             <div style={{ flex: 1 }} />
             {isAuth ? (
                 <div>
-                    <button
-                        type="button"
-                        disabled={Boolean(rootMatch || dashboardMatch)}
-                        onClick={() => {
-                            navigate('/dashboard')
-                        }}
-                    >
-                        Dashboard
-                    </button>
-                    <Link to="/page1">
-                        Page 1
-                    </Link>
                     <button
                         type="button"
                         onClick={logout}

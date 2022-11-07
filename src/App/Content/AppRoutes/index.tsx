@@ -9,6 +9,7 @@ import ErrorBoundary from './ErrorBoundary'
 import Fallback from './Fallback'
 import PrivateRoute from './PrivateRoute'
 
+const CBitStampData = React.lazy(() => import('./BitStampData'))
 const CDashboard = React.lazy(() => import('./Dashboard'))
 const CLogin = React.lazy(() => import('./Login'))
 const CPage1 = React.lazy(() => import('./Page1'))
@@ -32,6 +33,14 @@ const AppRoutes = () => (
                         )}
                     />
                 ))}
+                <Route
+                    path="bitstamp-data"
+                    element={(
+                        <PrivateRoute>
+                            <CBitStampData />
+                        </PrivateRoute>
+                    )}
+                />
                 <Route
                     path="page1"
                     element={(

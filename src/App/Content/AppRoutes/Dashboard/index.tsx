@@ -6,6 +6,8 @@ import { useMachine } from '@xstate/react'
 import type { ResDataItem } from '../../../../api/controllers/data/{{get}}'
 import { useAuthContext } from '../../../auth-context'
 
+declare const BUILD_ENV: string
+
 export type DataMachineContext = {
     data?: ResDataItem[]
 }
@@ -61,7 +63,7 @@ const Dashboard = () => {
         },
         services: {
             load: async () => {
-                const url = 'https://demo-app-production.up.railway.app/api/v1/data'
+                const url = BUILD_ENV === 'local' ? '/api/v1/data' : 'https://demo-app-production.up.railway.app/api/v1/data'
                 const res: any = await fetch(
                     url,
                     {
@@ -79,7 +81,12 @@ const Dashboard = () => {
     })
 
     return (
-        <div style={{ overflow: 'auto' }}>
+        <div
+            style={{
+                flex: 1,
+                overflow: 'auto',
+            }}
+        >
             Dashboard
             <pre>
                 {JSON.stringify(dataMachineState.context.data, null, 2)}
@@ -165,6 +172,7 @@ const Dashboard = () => {
             <br />
             <br />
             <br />
+            ---
         </div>
     )
 }

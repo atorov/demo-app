@@ -10,7 +10,8 @@ import Fallback from './Fallback'
 import PrivateRoute from './PrivateRoute'
 
 const CBitStampData = React.lazy(() => import('./BitStampData'))
-const CChat = React.lazy(() => import('./Chat'))
+const CChatLayout = React.lazy(() => import('./chat/Layout'))
+const CChatRoom = React.lazy(() => import('./chat/Room'))
 const CDashboard = React.lazy(() => import('./Dashboard'))
 const CLogin = React.lazy(() => import('./Login'))
 const CPage1 = React.lazy(() => import('./Page1'))
@@ -52,13 +53,17 @@ const AppRoutes = () => (
                         )}
                     />
                     <Route
-                        path="chat"
                         element={(
                             <PrivateRoute>
-                                <CChat />
+                                <CChatLayout />
                             </PrivateRoute>
                         )}
-                    />
+                    >
+                        <Route
+                            path="chat"
+                            element={<CChatRoom />}
+                        />
+                    </Route>
                     <Route
                         path="page1"
                         element={(

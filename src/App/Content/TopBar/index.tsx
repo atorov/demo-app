@@ -1,7 +1,7 @@
 import { useAuthContext } from '../../auth-context'
 
 const TopBar = () => {
-    const [, , { isAuth, logout }] = useAuthContext()
+    const [authData, , { isAuth, logout }] = useAuthContext()
 
     return (
         <header
@@ -25,6 +25,18 @@ const TopBar = () => {
             <div style={{ flex: 1 }} />
             {isAuth ? (
                 <div>
+                    <span>
+                        {authData.data?.name}
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span>
+                        {authData.data?.role}
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span>
+                        {authData.data?.userId}
+                    </span>
+                    &nbsp;|&nbsp;
                     <button
                         type="button"
                         onClick={logout}

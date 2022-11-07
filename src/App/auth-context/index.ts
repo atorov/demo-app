@@ -7,6 +7,9 @@ export type AuthState = {
     status: 'not_authenticated' | 'authenticated'
     data?: Partial<{
         accessToken: string
+        name: string
+        role: string
+        userId: string
     }>
 }
 

@@ -32,18 +32,26 @@ const SideBar = () => {
             </div>
             <div>
                 <NavLink
-                    to="/page1"
-                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
-                >
-                    Page 1
-                </NavLink>
-            </div>
-            <div>
-                <NavLink
                     to="/bitstamp-data"
                     style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
                 >
                     BitStamp Data
+                </NavLink>
+            </div>
+            <div>
+                <NavLink
+                    to="/chat"
+                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
+                >
+                    Chat
+                </NavLink>
+            </div>
+            <div>
+                <NavLink
+                    to="/page1"
+                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
+                >
+                    Page 1
                 </NavLink>
             </div>
         </aside>

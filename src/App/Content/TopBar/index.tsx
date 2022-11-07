@@ -1,6 +1,6 @@
 import { useAuthContext } from '../../auth-context'
 
-const TopBarL1 = () => {
+const TopBar = () => {
     const [, , { isAuth, logout }] = useAuthContext()
 
     return (
@@ -37,4 +37,4 @@ const TopBarL1 = () => {
     )
 }
 
-export default TopBarL1
+export default TopBar

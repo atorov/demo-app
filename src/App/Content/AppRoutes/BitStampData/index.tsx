@@ -36,10 +36,14 @@ const BitStampData = () => {
                 }
             }
             catch (error) {
-                console.log('🚀 TODO: ~ file: index.tsx ~ line 20 ~ BitStampData ~ error', error)
+                console.log('🚀 TODO: ~ BitStampData ~ error', error)
             }
         }
-        return () => ws.close()
+        return () => {
+            if (ws.readyState) {
+                ws.close()
+            }
+        }
     }, [])
 
     return (

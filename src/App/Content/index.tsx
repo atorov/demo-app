@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { useAuthContext } from '../auth-context'
 import AppRoutes from './AppRoutes'
 import SideBar from './SideBar'
-import TopBarL1 from './TopBarL1'
+import TopBar from './TopBar'
 
 const Content = () => {
     const [, , { isAuth }] = useAuthContext()
@@ -19,7 +19,7 @@ const Content = () => {
             }}
         >
             <BrowserRouter>
-                <TopBarL1 />
+                <TopBar />
                 <div
                     style={{
                         display: 'flex',

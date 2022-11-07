@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "private": true,
   "description": "Demo App",
   "repository": {
@@ -13,6 +13,9 @@
     "predev:api": "npm run check",
     "dev:api": "nodemon -r dotenv/config -r esbuild-register src/api/app.ts",
     "start:api": "node -r dotenv/config -r esbuild-register ./src/api/app.ts",
+    "predev:ws": "npm run check",
+    "dev:ws": "nodemon -r dotenv/config -r esbuild-register src/ws",
+    "start:ws": "node -r dotenv/config -r esbuild-register src/ws",
     "predev:fe": "npm run check",
     "dev:fe": "nodemon --watch webpack.*.js --exec \"BUILD_ENV=local NODE_ENV=development PORT=9080 webpack serve --progress\"",
     "prebuild:fe": "npm run check && npm run clean",

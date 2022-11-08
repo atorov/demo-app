@@ -40,7 +40,7 @@ const BitStampData = () => {
             }
         }
         return () => {
-            if (ws.readyState) {
+            if (ws.readyState) { // Not quite correct actually ...
                 ws.close()
             }
         }

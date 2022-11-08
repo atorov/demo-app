@@ -1,14 +1,14 @@
 import type { WebSocket as TWebSocket } from 'ws'
 import createServer from './create-server'
 
-console.log(`::: PORT: ${process.env.WS_PORT}`)
+console.log(`::: WS_PORT: ${process.env.WS_PORT}`)
 
 type UserRef = {
     socket: TWebSocket
     lastActiveAt: number
 }
 
-type Message = {
+export type Message = {
     sender: string
     body: string
     sentAt: number
@@ -20,9 +20,8 @@ const userRefs = new Set<UserRef>()
 
 function removeInactiveUsers() {
     const now = Date.now()
-
     userRefs.forEach((userRef) => {
-        if (userRef.lastActiveAt < now - 300000) {
+        if (userRef.lastActiveAt < now - 1 * 60 * 1000) { // 1 min
             userRef.socket.close(4000, 'inactivity')
         }
     })
@@ -72,6 +71,7 @@ server.on('connection', (socket) => {
                 sentAt: Date.now(),
             }
             sendMessage(verifiedMessage)
+            recentMessages.push(verifiedMessage)
 
             setTimeout(() => {
                 recentMessages.shift()

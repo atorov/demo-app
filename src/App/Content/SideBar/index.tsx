@@ -40,7 +40,7 @@ const SideBar = () => {
             </div>
             <div>
                 <NavLink
-                    to="/chat"
+                    to="/chat/room"
                     style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
                 >
                     Chat

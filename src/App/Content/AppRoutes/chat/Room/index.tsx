@@ -15,7 +15,7 @@ const Chat = () => {
 
     const ws = React.useRef<WebSocket>()
     React.useEffect(() => {
-        ws.current = new WebSocket(BUILD_ENV === 'local' ? 'ws://localhost:3001' : '') // TODO:
+        ws.current = new WebSocket(BUILD_ENV === 'local' ? 'ws://localhost:3001' : 'wss://demo-app-ws-production.up.railway.app/') // TODO:
 
         ws.current.onopen = () => {
             setConnectionOpen(true)

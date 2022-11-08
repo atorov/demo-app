@@ -1,7 +1,9 @@
 import type { WebSocket as TWebSocket } from 'ws'
 import createServer from './create-server'
 
-console.log(`::: WS_PORT: ${process.env.WS_PORT}`)
+const PORT = process.env.WS_PORT ?? process.env.PORT
+
+console.log(`::: WS PORT: ${PORT}`)
 
 type UserRef = {
     socket: TWebSocket
@@ -15,7 +17,7 @@ export type Message = {
 }
 
 const recentMessages: Message[] = []
-const server = createServer()
+const server = createServer(PORT)
 const userRefs = new Set<UserRef>()
 
 function removeInactiveUsers() {

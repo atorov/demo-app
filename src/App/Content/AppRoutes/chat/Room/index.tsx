@@ -54,10 +54,11 @@ const Chat = () => {
                         background: message.sender === authData.data?.name ? 'lightblue' : 'lightgreen',
                     }}
                 >
-                    <h4>
-                        {message.sender === authData.data?.name ? 'You' : message.sender}
-                    </h4>
                     <span>
+                        {message.sender === authData.data?.name ? 'You' : message.sender}
+                    </span>
+                    <span>
+                        @
                         {new Date(message.sentAt).toLocaleTimeString(undefined, { timeStyle: 'short' })}
                     </span>
                     <p>

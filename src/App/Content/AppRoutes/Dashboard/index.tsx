@@ -63,7 +63,7 @@ const Dashboard = () => {
         },
         services: {
             load: async () => {
-                const url = BUILD_ENV === 'local' ? '/api/v1/data' : 'https://demo-app-production.up.railway.app/api/v1/data'
+                const url = BUILD_ENV === 'local' ? '/api/v1/data' : 'https://demo-app-api-production.up.railway.app/api/v1/data'
                 const res: any = await fetch(
                     url,
                     {

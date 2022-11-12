@@ -4,18 +4,44 @@ import {
     useMatch,
 } from 'react-router-dom'
 import styled from 'styled-components'
-import Button from '../../../shared/components/styled/Button'
+import StyledButton from '../../../shared/components/styled/Button'
 
-const StyledButton = styled(Button).attrs((props) => props)`
+const CustomStyledSideBar = styled.header`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 8rem;
+    padding: 0.5rem;
+    border-right: 1px solid lightgrey;
+`
+
+const CustomStyledButton = styled(StyledButton).attrs((props) => props)`
     width: 100%;
     display: block;
     margin-bottom: 0.5rem;
     text-align: center;
 `
 
-const inactiveStyle = {
-    textDecoration: 'none',
-}
+const CustomStyledNavLink = styled(NavLink)`
+    display: block;
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: darkgreen;
+    color: yellowgreen;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    &.active {
+        background-color: gray;
+        color: lightgrey;
+        cursor: not-allowed;
+    }
+`
 
 const SideBar = () => {
     console.log()
@@ -24,50 +50,25 @@ const SideBar = () => {
     const navigate = useNavigate()
 
     return (
-        <aside
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'start',
-                justifyContent: 'start',
-                width: '8rem',
-                padding: '0.5rem',
-                borderRight: '1px solid lightgrey',
-            }}
-        >
-            <StyledButton
+        <CustomStyledSideBar>
+            <CustomStyledButton
                 disabled={Boolean(rootMatch || dashboardMatch)}
                 onClick={() => {
                     navigate('/dashboard')
                 }}
             >
                 Dashboard
-            </StyledButton>
-            <div>
-                <NavLink
-                    to="/bitstamp-data"
-                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
-                >
-                    BitStamp Data
-                </NavLink>
-            </div>
-            <div>
-                <NavLink
-                    to="/chat/room"
-                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
-                >
-                    Chat
-                </NavLink>
-            </div>
-            <div>
-                <NavLink
-                    to="/page1"
-                    style={({ isActive }) => (!isActive ? inactiveStyle : undefined)}
-                >
-                    Page 1
-                </NavLink>
-            </div>
-        </aside>
+            </CustomStyledButton>
+            <CustomStyledNavLink to="/bitstamp-data">
+                BitStamp
+            </CustomStyledNavLink>
+            <CustomStyledNavLink to="/chat/room">
+                Chat
+            </CustomStyledNavLink>
+            <CustomStyledNavLink to="/page1">
+                Page 1
+            </CustomStyledNavLink>
+        </CustomStyledSideBar>
     )
 }
 

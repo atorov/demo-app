@@ -2,18 +2,18 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     height: 2rem;
-    /* line-height: rem; */
     padding: 0.5rem;
     border-radius: 0.25rem;
     background-color: darkgreen;
     color: yellowgreen;
+    font-size: 1rem;
     cursor: pointer;
 
-    &:hover {
+    :hover {
         background-color: green;
     }
 
-    &:disabled {
+    :disabled {
         background-color: gray;
         color: lightgrey;
         cursor: not-allowed;

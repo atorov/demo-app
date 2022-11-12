@@ -8,8 +8,36 @@ import {
     createMachine,
 } from 'xstate'
 import { useMachine } from '@xstate/react'
+import styled from 'styled-components'
+import StyledButton from '../../../../shared/components/styled/Button'
+import StyledContainer from '../../../../shared/components/styled/Container'
+import StyledInput from '../../../../shared/components/styled/Input'
+import StyledText from '../../../../shared/components/styled/Text'
 import { useAuthContext } from '../../../auth-context'
 import type { AuthState } from '../../../auth-context'
+
+const CustomStyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const CustomStyledInput = styled(StyledInput)`
+    margin: 1.5rem 0 0 0;
+    width: 16rem;
+`
+
+const CustomStyledButton = styled(StyledButton)`
+    margin: 1.5rem 0 0 0;
+    width: 8rem;
+`
+
+const CustomStyledText = styled(StyledText)`
+    display: block;
+    margin: 1.5rem 0 0 0;
+    color: darkred;
+    text-align: center;
+`
 
 export type LoginMachineContext = {
     errorMessage: string
@@ -141,14 +169,14 @@ const Login = () => {
     })
 
     return (
-        <>
-            <form
+        <StyledContainer>
+            <CustomStyledForm
                 onSubmit={async (event) => {
                     event.preventDefault()
                     loginMachineSend('LOGIN')
                 }}
             >
-                <input
+                <CustomStyledInput
                     type="text"
                     placeholder="Name"
                     value={loginMachineState.context.name}
@@ -161,7 +189,7 @@ const Login = () => {
                         })
                     }}
                 />
-                <input
+                <CustomStyledInput
                     type="password"
                     placeholder="Password"
                     value={loginMachineState.context.password}
@@ -174,20 +202,20 @@ const Login = () => {
                         })
                     }}
                 />
-                <button
+                <CustomStyledButton
                     type="submit"
                     disabled={!loginMachineState.can('LOGIN') || !!loginMachineState.context.errorMessage}
                 >
                     Log in
-                </button>
-            </form>
+                </CustomStyledButton>
+            </CustomStyledForm>
 
             {loginMachineState.context.errorMessage ? (
-                <p>
+                <CustomStyledText>
                     {loginMachineState.context.errorMessage}
-                </p>
+                </CustomStyledText>
             ) : null}
-        </>
+        </StyledContainer>
     )
 }
 

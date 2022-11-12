@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { GiExitDoor } from 'react-icons/gi'
 import { useAuthContext } from '../../auth-context'
-import Button from '../../../shared/components/styled/Button'
-import Text from '../../../shared/components/styled/Text'
+import StyledButton from '../../../shared/components/styled/Button'
+import StyledText from '../../../shared/components/styled/Text'
 
-const StyledHeader = styled.header`
+const CustomStyledHeader = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,57 +15,58 @@ const StyledHeader = styled.header`
     overflow: hidden;
 `
 
-const StyledLogo = styled.img.attrs((props) => props)`
+const CustomStyledLogo = styled.img.attrs((props) => props)`
     display: block;
     width: 8rem;
 `
 
-const StyledUserInfo = styled.div`
+const CustomStyledUserInfo = styled.div`
     padding: 0 1rem;
 `
 
-const StyledUserName = styled(Text)`
+const CustomStyledUserName = styled(StyledText)`
     color: yellowgreen;
     font-weight: 800;
 `
 
-const StyledUserRole = styled(Text)`
+const CustomStyledUserRole = styled(StyledText)`
     font-size: 0.75rem;
 `
-const StyledUserId = styled(Text)`
+const CustomStyledUserId = styled(StyledText)`
     font-size: 0.67rem;
+`
+
+const CustomStyledButton = styled(StyledButton)`
+    display: block;
 `
 
 const TopBar = () => {
     const [authData, , { isAuth, logout }] = useAuthContext()
 
     return (
-        <StyledHeader>
-            <StyledLogo src="/img/logo.png" />
+        <CustomStyledHeader>
+            <CustomStyledLogo src="/img/logo.png" />
             <div style={{ flex: 1 }} />
             {isAuth ? (
                 <>
-                    <StyledUserInfo>
-                        <StyledUserName>
+                    <CustomStyledUserInfo>
+                        <CustomStyledUserName>
                             {authData.data?.name}
-                        </StyledUserName>
-                        <StyledUserRole>
+                        </CustomStyledUserName>
+                        <CustomStyledUserRole>
                             {` (${authData.data?.role})`}
-                        </StyledUserRole>
+                        </CustomStyledUserRole>
                         <br />
-                        <StyledUserId>
+                        <CustomStyledUserId>
                             {authData.data?.userId}
-                        </StyledUserId>
-                    </StyledUserInfo>
-                    <Button
-                        style={{ display: 'block' }}
-                        onClick={logout}
-                    >
+                        </CustomStyledUserId>
+                    </CustomStyledUserInfo>
+                    <CustomStyledButton onClick={logout}>
                         <GiExitDoor />
-                    </Button>
+                    </CustomStyledButton>
                 </>
             ) : null}
-        </StyledHeader>
+        </CustomStyledHeader>
     )
 }
 

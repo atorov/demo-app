@@ -1,26 +1,19 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import styled from 'styled-components'
+import StyledHeader from '../../../../../shared/components/styled/Header'
+
+const CustomStyledHeader = styled(StyledHeader)`
+    padding: 1rem 0;
+    color: darkred;
+`
 
 const Kicked = () => {
     const { state } = useLocation()
-    const navigate = useNavigate()
 
     return (
-        <>
-            <h2>Oh no!</h2>
-            <h2>
-                {`You were kicked for ${state?.kickReason || 'no reason'}!`}
-            </h2>
-            <div>
-                <button
-                    type="button"
-                    onClick={() => {
-                        navigate('/')
-                    }}
-                >
-                    Go back home
-                </button>
-            </div>
-        </>
+        <CustomStyledHeader>
+            {`Oh no! You were kicked for ${state?.kickReason || 'no reason'}!`}
+        </CustomStyledHeader>
     )
 }
 

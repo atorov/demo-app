@@ -4,7 +4,7 @@ import {
 } from 'xstate'
 import { useMachine } from '@xstate/react'
 import type { ResDataItem } from '../../../../api/controllers/data/{{get}}'
-import Container from '../../../../shared/components/styled/Container'
+import StyledContainer from '../../../../shared/components/styled/Container'
 import { useAuthContext } from '../../../auth-context'
 
 declare const BUILD_ENV: string
@@ -82,7 +82,7 @@ const Dashboard = () => {
     })
 
     return (
-        <Container>
+        <StyledContainer>
             Dashboard
             <pre>
                 {JSON.stringify(dataMachineState.context.data, null, 2)}
@@ -169,7 +169,7 @@ const Dashboard = () => {
             <br />
             <br />
             ---
-        </Container>
+        </StyledContainer>
     )
 }
 

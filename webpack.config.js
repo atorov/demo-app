@@ -83,7 +83,7 @@ const config = {
             MODE: JSON.stringify(MODE),
             NODE_ENV: JSON.stringify(NODE_ENV),
             BUILD_ENV: JSON.stringify(BUILD_ENV),
-            process: JSON.stringify({}),
+            // process: JSON.stringify({}), <-- This causes big troubles with styled-components library!
         }),
         new HtmlWebpackPlugin({
             filename: `${DIST}/index.html`,

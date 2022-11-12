@@ -1,51 +1,71 @@
+import styled from 'styled-components'
+import { GiExitDoor } from 'react-icons/gi'
 import { useAuthContext } from '../../auth-context'
+import Button from '../../../shared/components/styled/Button'
+import Text from '../../../shared/components/styled/Text'
+
+const StyledHeader = styled.header`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 4rem;
+    min-height: 4rem;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid lightgray;
+    overflow: hidden;
+`
+
+const StyledLogo = styled.img.attrs((props) => props)`
+    display: block;
+    width: 8rem;
+`
+
+const StyledUserInfo = styled.div`
+    padding: 0 1rem;
+`
+
+const StyledUserName = styled(Text)`
+    color: yellowgreen;
+    font-weight: 800;
+`
+
+const StyledUserRole = styled(Text)`
+    font-size: 0.75rem;
+`
+const StyledUserId = styled(Text)`
+    font-size: 0.67rem;
+`
 
 const TopBar = () => {
     const [authData, , { isAuth, logout }] = useAuthContext()
 
     return (
-        <header
-            style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                height: '60px',
-                minHeight: '60px',
-                borderBottom: '1px solid lightgrey',
-                overflow: 'hidden',
-            }}
-        >
-            <div>
-                <img
-                    src="/img/logo.png"
-                    alt="logo"
-                    width="200px"
-                />
-            </div>
+        <StyledHeader>
+            <StyledLogo src="/img/logo.png" />
             <div style={{ flex: 1 }} />
             {isAuth ? (
-                <div>
-                    <span>
-                        {authData.data?.name}
-                    </span>
-                    &nbsp;|&nbsp;
-                    <span>
-                        {authData.data?.role}
-                    </span>
-                    &nbsp;|&nbsp;
-                    <span>
-                        {authData.data?.userId}
-                    </span>
-                    &nbsp;|&nbsp;
-                    <button
-                        type="button"
+                <>
+                    <StyledUserInfo>
+                        <StyledUserName>
+                            {authData.data?.name}
+                        </StyledUserName>
+                        <StyledUserRole>
+                            {` (${authData.data?.role})`}
+                        </StyledUserRole>
+                        <br />
+                        <StyledUserId>
+                            {authData.data?.userId}
+                        </StyledUserId>
+                    </StyledUserInfo>
+                    <Button
+                        style={{ display: 'block' }}
                         onClick={logout}
                     >
-                        LOGOUT
-                    </button>
-                </div>
+                        <GiExitDoor />
+                    </Button>
+                </>
             ) : null}
-        </header>
+        </StyledHeader>
     )
 }
 

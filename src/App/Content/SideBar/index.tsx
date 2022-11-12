@@ -3,12 +3,22 @@ import {
     useNavigate,
     useMatch,
 } from 'react-router-dom'
+import styled from 'styled-components'
+import Button from '../../../shared/components/styled/Button'
+
+const StyledButton = styled(Button).attrs((props) => props)`
+    width: 100%;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: center;
+`
 
 const inactiveStyle = {
     textDecoration: 'none',
 }
 
 const SideBar = () => {
+    console.log()
     const rootMatch = useMatch('/')
     const dashboardMatch = useMatch('/dashboard')
     const navigate = useNavigate()
@@ -16,21 +26,23 @@ const SideBar = () => {
     return (
         <aside
             style={{
-                width: '104px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'start',
+                justifyContent: 'start',
+                width: '8rem',
+                padding: '0.5rem',
                 borderRight: '1px solid lightgrey',
             }}
         >
-            <div>
-                <button
-                    type="button"
-                    disabled={Boolean(rootMatch || dashboardMatch)}
-                    onClick={() => {
-                        navigate('/dashboard')
-                    }}
-                >
-                    Dashboard
-                </button>
-            </div>
+            <StyledButton
+                disabled={Boolean(rootMatch || dashboardMatch)}
+                onClick={() => {
+                    navigate('/dashboard')
+                }}
+            >
+                Dashboard
+            </StyledButton>
             <div>
                 <NavLink
                     to="/bitstamp-data"

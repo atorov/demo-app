@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
         outline: 0;
         border: none;
         box-sizing: border-box;
-        font-family: 'Open Sans', sans-serif;
+        font-family: ${(props) => props.theme.font.family};
     }
 `
 

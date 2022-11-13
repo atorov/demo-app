@@ -1,6 +1,9 @@
+import StyledContainer from '../../../../shared/components/styled/Container'
+import StyledHeader from '../../../../shared/components/styled/Header'
+
 const Page1 = () => (
-    <div style={{ overflow: 'auto' }}>
-        TODO: Page 1
+    <StyledContainer>
+        <StyledHeader>Page 1</StyledHeader>
         <br />
         <br />
         <br />
@@ -82,7 +85,7 @@ const Page1 = () => (
         <br />
         <br />
         <br />
-    </div>
+    </StyledContainer>
 )
 
 export default Page1

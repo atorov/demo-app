@@ -3,14 +3,14 @@ import styled from 'styled-components'
 const Input = styled.input`
     height: 2rem;
     padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid green;
-    color: gray;
+    border-radius: ${(props) => props.theme.border.radius};
+    border: ${(props) => `1px solid ${props.theme.palette.border.accent}`};
+    color: ${(props) => props.theme.palette.text.primary};
 
     :disabled {
-        background-color: lightgrey;
+        background-color: ${(props) => props.theme.palette.background.disabled};
         border: none;
-        color: lightgrey;
+        color: ${(props) => props.theme.palette.text.disabled};
         cursor: not-allowed;
     }
 `

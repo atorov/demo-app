@@ -4,7 +4,7 @@ import StyledHeader from '../../../../../shared/components/styled/Header'
 
 const CustomStyledHeader = styled(StyledHeader)`
     padding: 1rem 0;
-    color: darkred;
+    color: ${(props) => props.theme.palette.text.error};
 `
 
 const Kicked = () => {

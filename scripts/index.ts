@@ -1,2 +1,2 @@
 const a = 5
-console.log('::: TODO:', a)
+console.log('🚀 ~ file: scripts/index.ts ~ line 2 ~ a', a)

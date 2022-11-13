@@ -11,11 +11,11 @@ const CustomStyledHeader = styled.header`
     height: 4rem;
     min-height: 4rem;
     padding: 0 0.5rem;
-    border-bottom: 1px solid lightgray;
+    border-bottom: ${(props) => `1px solid ${props.theme.palette.border.primary}`};
     overflow: hidden;
 `
 
-const CustomStyledLogo = styled.img.attrs((props) => props)`
+const CustomStyledLogo = styled.img`
     display: block;
     width: 8rem;
 `
@@ -25,7 +25,7 @@ const CustomStyledUserInfo = styled.div`
 `
 
 const CustomStyledUserName = styled(StyledText)`
-    color: yellowgreen;
+    color: ${(props) => props.theme.palette.text.accent};
     font-weight: 800;
 `
 

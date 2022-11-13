@@ -13,10 +13,10 @@ const CustomStyledSideBar = styled.header`
     justify-content: start;
     width: 8rem;
     padding: 0.5rem;
-    border-right: 1px solid lightgrey;
+    border-right: ${(props) => `1px solid ${props.theme.palette.border.primary}`};
 `
 
-const CustomStyledButton = styled(StyledButton).attrs((props) => props)`
+const CustomStyledButton = styled(StyledButton)`
     width: 100%;
     display: block;
     margin-bottom: 0.5rem;
@@ -30,15 +30,15 @@ const CustomStyledNavLink = styled(NavLink)`
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.25rem;
-    background-color: darkgreen;
-    color: yellowgreen;
+    background-color: ${(props) => props.theme.palette.background.accent};
+    color: ${(props) => props.theme.palette.text.accent};
     text-align: center;
     text-decoration: none;
     cursor: pointer;
 
     &.active {
-        background-color: gray;
-        color: lightgrey;
+        background-color: ${(props) => props.theme.palette.background.disabled};
+        color: ${(props) => props.theme.palette.text.disabled};
         cursor: not-allowed;
     }
 `

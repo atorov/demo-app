@@ -33,9 +33,8 @@ const CustomStyledButton = styled(StyledButton)`
 `
 
 const CustomStyledText = styled(StyledText)`
-    display: block;
     margin: 1.5rem 0 0 0;
-    color: darkred;
+    color: ${(props) => props.theme.palette.text.error};
     text-align: center;
 `
 
@@ -211,7 +210,7 @@ const Login = () => {
             </CustomStyledForm>
 
             {loginMachineState.context.errorMessage ? (
-                <CustomStyledText>
+                <CustomStyledText as="p">
                     {loginMachineState.context.errorMessage}
                 </CustomStyledText>
             ) : null}

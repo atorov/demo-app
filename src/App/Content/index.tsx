@@ -1,38 +1,39 @@
 import { BrowserRouter } from 'react-router-dom'
+import styled from 'styled-components'
 import { useAuthContext } from '../auth-context'
 import AppRoutes from './AppRoutes'
 import SideBar from './SideBar'
 import TopBar from './TopBar'
 
+const CustomStyledMainContent = styled.main`
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+`
+
+const CustomStyledInnerContent = styled.main`
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+`
+
 const Content = () => {
     const [, , { isAuth }] = useAuthContext()
 
     return (
-        <main
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'stretch',
-                width: '100%',
-                height: '100vh',
-                overflow: 'hidden',
-            }}
-        >
+        <CustomStyledMainContent>
             <BrowserRouter>
                 <TopBar />
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        height: '100vh',
-                        overflow: 'hidden',
-                    }}
-                >
+                <CustomStyledInnerContent>
                     {isAuth ? <SideBar /> : null}
                     <AppRoutes />
-                </div>
+                </CustomStyledInnerContent>
             </BrowserRouter>
-        </main>
+        </CustomStyledMainContent>
     )
 }
 

@@ -12,7 +12,7 @@ declare const BUILD_ENV: string
 const CustomStyledText = styled(StyledText)`
     display: block;
     margin: 1rem 0;
-    color: yellowgreen;
+    color: ${(props) => props.theme.palette.text.accent};
 `
 
 type TCustomStyledMessageProps = {
@@ -27,7 +27,7 @@ const CustomStyledMessage = styled.article<TCustomStyledMessageProps>`
         return ml
     }};
     padding: 0.25rem;
-    border-radius: 0.25rem;
+    border-radius: ${(props) => props.theme.border.radius};
     background: ${(props) => {
         const bgnd = props.isItMe ? 'lightgreen' : 'lightblue'
         return bgnd
@@ -68,7 +68,7 @@ const Chat = () => {
 
     const ws = React.useRef<WebSocket>()
     React.useEffect(() => {
-        ws.current = new WebSocket(BUILD_ENV === 'local' ? 'ws://localhost:3001' : 'wss://demo-app-ws-production.up.railway.app/') // TODO:
+        ws.current = new WebSocket(BUILD_ENV === 'local' ? 'ws://localhost:3001' : 'wss://demo-app-ws-production.up.railway.app/')
 
         ws.current.onopen = () => {
             setConnectionOpen(true)

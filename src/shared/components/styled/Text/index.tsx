@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Text = styled.span`
-    color: gray;
+    color: ${(props) => props.theme.palette.text.primary};
     text-decoration: none;
 `
 

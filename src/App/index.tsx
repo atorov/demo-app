@@ -23,6 +23,7 @@ const theme: DefaultTheme = {
             accent: 'darkgreen',
             disabled: 'grey',
             hover: 'green',
+            primary: 'lightgrey',
         },
         border: {
             accent: 'green',

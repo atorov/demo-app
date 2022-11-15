@@ -3,14 +3,15 @@ import {
     createMachine,
 } from 'xstate'
 import { useMachine } from '@xstate/react'
-import type { ResDataItem } from '../../../../api/controllers/data/{{get}}'
+import type { Task } from '../../../../api/controllers/tasks'
 import StyledContainer from '../../../../shared/components/styled/Container'
+import StyledHeader from '../../../../shared/components/styled/Header'
 import { useAuthContext } from '../../../auth-context'
 
 declare const BUILD_ENV: string
 
 export type DataMachineContext = {
-    data?: ResDataItem[]
+    data?: Task[]
 }
 
 // type DataMachineEvent = {}
@@ -64,7 +65,7 @@ const Dashboard = () => {
         },
         services: {
             load: async () => {
-                const url = BUILD_ENV === 'local' ? '/api/v1/data' : 'https://demo-app-api-production.up.railway.app/api/v1/data'
+                const url = BUILD_ENV === 'local' ? '/api/v1/tasks' : 'https://demo-app-api-production.up.railway.app/api/v1/tasks'
                 const res: any = await fetch(
                     url,
                     {
@@ -83,92 +84,10 @@ const Dashboard = () => {
 
     return (
         <StyledContainer>
-            Dashboard
+            <StyledHeader>Dashboard</StyledHeader>
             <pre>
                 {JSON.stringify(dataMachineState.context.data, null, 2)}
             </pre>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            ---
         </StyledContainer>
     )
 }

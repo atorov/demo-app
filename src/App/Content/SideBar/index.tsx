@@ -65,8 +65,8 @@ const SideBar = () => {
             <CustomStyledNavLink to="/chat/room">
                 Chat
             </CustomStyledNavLink>
-            <CustomStyledNavLink to="/page1">
-                Page 1
+            <CustomStyledNavLink to="/tasks">
+                Tasks
             </CustomStyledNavLink>
         </CustomStyledSideBar>
     )

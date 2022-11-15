@@ -15,7 +15,7 @@ const CChatLayout = React.lazy(() => import('./chat/Layout'))
 const CChatRoom = React.lazy(() => import('./chat/Room'))
 const CDashboard = React.lazy(() => import('./Dashboard'))
 const CLogin = React.lazy(() => import('./Login'))
-const CPage1 = React.lazy(() => import('./Page1'))
+const CTasks = React.lazy(() => import('./Tasks'))
 
 const AppRoutes = () => (
     <ErrorBoundary>
@@ -72,10 +72,10 @@ const AppRoutes = () => (
                         </Route>
                     </Route>
                     <Route
-                        path="page1"
+                        path="tasks"
                         element={(
                             <PrivateRoute>
-                                <CPage1 />
+                                <CTasks />
                             </PrivateRoute>
                         )}
                     />

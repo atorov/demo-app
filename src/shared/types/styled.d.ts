@@ -5,6 +5,7 @@ interface Palette {
         accent: string
         disabled: string
         hover: string
+        primary: string
     }
     border: {
         accent: string

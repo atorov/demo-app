@@ -8,7 +8,7 @@ import type {
 } from 'express'
 import fs from 'fs'
 import helmet from 'helmet'
-import dataRoutes from './routes/data'
+import tasksRoutes from './routes/tasks'
 import HttpException from './shared/http-exception'
 
 const print = debug('server')
@@ -41,7 +41,7 @@ function createServer() {
         })
     })
 
-    server.use('/api/v1/data', dataRoutes)
+    server.use('/api/v1/tasks', tasksRoutes)
 
     server.use(() => {
         throw new HttpException('::: Error! Could not find this route!', 404)

@@ -37,7 +37,18 @@ export async function getAllTasks(_req: Request, res: Response) {
             createdAt: 1668467458001,
             updatedAt: null,
         },
+        {
+            id: '4',
+            name: 'My 4th task for this week',
+            status: 'todo',
+            createdAt: 1668467459201,
+            updatedAt: null,
+        },
     ]
+
+    await new Promise((resolve) => {
+        setTimeout(resolve, 1550)
+    })
 
     return res.json(resData)
 }

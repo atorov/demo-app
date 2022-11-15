@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import { ThemeProvider } from 'styled-components'
 import type { DefaultTheme } from 'styled-components'
 import { AppProvider } from './app-context'
@@ -10,6 +12,8 @@ const appLoaderElement = document.querySelector('.app-loader')
 if (appLoaderElement) {
     appLoaderElement.parentNode?.removeChild(appLoaderElement)
 }
+
+const queryClient = new QueryClient()
 
 const theme: DefaultTheme = {
     border: {
@@ -41,10 +45,16 @@ const theme: DefaultTheme = {
 const App = () => (
     <AppProvider>
         <AuthProvider>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <Content />
-            </ThemeProvider>
+            <QueryClientProvider client={queryClient}>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <Content />
+                </ThemeProvider>
+                <ReactQueryDevtools
+                    initialIsOpen={false}
+                    position="bottom-right"
+                />
+            </QueryClientProvider>
         </AuthProvider>
     </AppProvider>
 )

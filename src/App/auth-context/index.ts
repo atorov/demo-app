@@ -13,13 +13,13 @@ export type AuthState = {
     }>
 }
 
-const INITIAL_STORE_DATA: AuthState = {
+const INITIAL_DATA: AuthState = {
     status: 'not_authenticated',
 }
 
 const { Provider: AuthProvider, useContext } = buildContext({
     displayName: 'AuthContext',
-    initialData: INITIAL_STORE_DATA,
+    initialData: INITIAL_DATA,
     storageKey: `${APP_NAME}-auth`,
 })
 

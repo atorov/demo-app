@@ -11,6 +11,41 @@ import helmet from 'helmet'
 import tasksRoutes from './routes/tasks'
 import HttpException from './shared/http-exception'
 
+(global as any).tasks = [
+    {
+        id: '1',
+        name: 'My first task for this week',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+        status: 'done',
+        categories: ['home'],
+        createdAt: 1668467357001,
+        updatedAt: 1668467418052,
+    },
+    {
+        id: '2',
+        name: 'My second task for this week',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
+        status: 'in_progress',
+        categories: ['home', 'holiday'],
+        createdAt: 1668467457001,
+        updatedAt: 1668467468052,
+    },
+    {
+        id: '3',
+        name: 'My third task for this week',
+        status: 'todo',
+        createdAt: 1668467458001,
+        updatedAt: null,
+    },
+    {
+        id: '4',
+        name: 'My 4th task for this week',
+        status: 'todo',
+        createdAt: 1668467459201,
+        updatedAt: null,
+    },
+]
+
 const print = debug('server')
 
 function createServer() {

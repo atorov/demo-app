@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { ThemeProvider } from 'styled-components'
 import type { DefaultTheme } from 'styled-components'
 import { AppProvider } from './app-context'
@@ -50,10 +49,6 @@ const App = () => (
                     <GlobalStyle />
                     <Content />
                 </ThemeProvider>
-                <ReactQueryDevtools
-                    initialIsOpen={false}
-                    position="bottom-right"
-                />
             </QueryClientProvider>
         </AuthProvider>
     </AppProvider>

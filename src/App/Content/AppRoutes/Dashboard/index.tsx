@@ -3,9 +3,9 @@ import {
     createMachine,
 } from 'xstate'
 import { useMachine } from '@xstate/react'
-import type { Task } from '../../../../api/controllers/tasks'
 import StyledContainer from '../../../../shared/components/styled/Container'
 import StyledHeader from '../../../../shared/components/styled/Header'
+import type { Task } from '../../../../shared/types/tasks'
 import { useAuthContext } from '../../../auth-context'
 
 declare const BUILD_ENV: string
@@ -66,7 +66,7 @@ const Dashboard = () => {
         services: {
             load: async () => {
                 const url = BUILD_ENV === 'local' ? '/api/v1/tasks' : 'https://demo-app-api-production.up.railway.app/api/v1/tasks'
-                const res: any = await fetch(
+                const res = await fetch(
                     url,
                     {
                         headers: {

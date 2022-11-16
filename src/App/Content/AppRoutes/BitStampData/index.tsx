@@ -36,7 +36,7 @@ const BitStampData = () => {
                 }
             }
             catch (error) {
-                console.log('🚀 TODO: ~ BitStampData ~ error', error)
+                console.log('::: Error:', error)
             }
         }
         return () => {

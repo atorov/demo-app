@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import styled from 'styled-components'
 import { useAuthContext } from '../auth-context'
 import AppRoutes from './AppRoutes'
@@ -32,6 +33,10 @@ const Content = () => {
                     {isAuth ? <SideBar /> : null}
                     <AppRoutes />
                 </CustomStyledInnerContent>
+                <ReactQueryDevtools
+                    initialIsOpen={false}
+                    position="bottom-right"
+                />
             </BrowserRouter>
         </CustomStyledMainContent>
     )

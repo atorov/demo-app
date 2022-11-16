@@ -8,6 +8,7 @@ import type {
 } from 'express'
 import fs from 'fs'
 import helmet from 'helmet'
+import paginatedDataRoutes from './routes/paginated-data'
 import tasksRoutes from './routes/tasks'
 import HttpException from './shared/http-exception'
 
@@ -76,6 +77,7 @@ function createServer() {
         })
     })
 
+    server.use('/api/v1/paginated-data', paginatedDataRoutes)
     server.use('/api/v1/tasks', tasksRoutes)
 
     server.use(() => {

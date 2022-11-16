@@ -15,6 +15,7 @@ const CChatLayout = React.lazy(() => import('./chat/Layout'))
 const CChatRoom = React.lazy(() => import('./chat/Room'))
 const CDashboard = React.lazy(() => import('./Dashboard'))
 const CLogin = React.lazy(() => import('./Login'))
+const CPaginatedData = React.lazy(() => import('./PaginatedData'))
 const CTaskDetails = React.lazy(() => import('./tasks/Details'))
 const CTasksLayout = React.lazy(() => import('./tasks/Layout'))
 const CTasksList = React.lazy(() => import('./tasks/List'))
@@ -91,6 +92,14 @@ const AppRoutes = () => (
                             />
                         </Route>
                     </Route>
+                    <Route
+                        path="paginated-data"
+                        element={(
+                            <PrivateRoute>
+                                <CPaginatedData />
+                            </PrivateRoute>
+                        )}
+                    />
                     <Route
                         path="*"
                         element={<Navigate replace to="/" />}

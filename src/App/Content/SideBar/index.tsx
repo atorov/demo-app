@@ -44,7 +44,6 @@ const CustomStyledNavLink = styled(NavLink)`
 `
 
 const SideBar = () => {
-    console.log()
     const rootMatch = useMatch('/')
     const dashboardMatch = useMatch('/dashboard')
     const navigate = useNavigate()
@@ -67,6 +66,9 @@ const SideBar = () => {
             </CustomStyledNavLink>
             <CustomStyledNavLink to="/tasks">
                 Tasks
+            </CustomStyledNavLink>
+            <CustomStyledNavLink to="/paginated-data">
+                Paginated
             </CustomStyledNavLink>
         </CustomStyledSideBar>
     )

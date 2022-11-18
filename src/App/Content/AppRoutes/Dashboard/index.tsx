@@ -6,9 +6,8 @@ import { useMachine } from '@xstate/react'
 import StyledContainer from '../../../../shared/components/styled/Container'
 import StyledHeader from '../../../../shared/components/styled/Header'
 import type { Task } from '../../../../shared/types/tasks'
+import { useAppContext } from '../../../app-context'
 import { useAuthContext } from '../../../auth-context'
-
-declare const BUILD_ENV: string
 
 export type DataMachineContext = {
     data?: Task[]
@@ -57,6 +56,7 @@ const dataMachine = createMachine({
 })
 
 const Dashboard = () => {
+    const [appData] = useAppContext()
     const [authData, , { logout }] = useAuthContext()
 
     const [dataMachineState] = useMachine(dataMachine, {
@@ -65,9 +65,8 @@ const Dashboard = () => {
         },
         services: {
             load: async () => {
-                const url = BUILD_ENV === 'local' ? '/api/v1/tasks' : 'https://demo-app-api-production.up.railway.app/api/v1/tasks'
                 const res = await fetch(
-                    url,
+                    `${appData.api.baseUrl}/tasks`,
                     {
                         headers: {
                             Authorization: String(authData.data?.accessToken),

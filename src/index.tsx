@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+// import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 
@@ -23,7 +23,7 @@ console.log('::: ::: :::')
 const container = document.querySelector('#app-root')
 const root = createRoot(container!)
 root.render((
-    <StrictMode>
-        <App />
-    </StrictMode>
+    // <StrictMode>
+    <App />
+    // </StrictMode>
 ))

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import styled from 'styled-components'
 import StyledButton from '../../../../shared/components/styled/Button'
 import StyledContainer from '../../../../shared/components/styled/Container'
@@ -8,8 +8,6 @@ import StyledText from '../../../../shared/components/styled/Text'
 import type { PaginatedData as TPaginatedData } from '../../../../shared/types/paginated-data'
 import { useAppContext } from '../../../app-context'
 import { useAuthContext } from '../../../auth-context'
-
-// declare const BUILD_ENV: string
 
 async function getPaginatedData(url: string, accessToken: string): Promise<TPaginatedData> {
     const res = await fetch(

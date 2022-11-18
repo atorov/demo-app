@@ -11,10 +11,12 @@
         "esbuild",
         "microtimestamp",
         "nocheck",
+        "pidx",
         "plusplus",
         "predev",
         "Regs",
         "stroustrup",
+        "tanstack",
         "typegen",
         "xstate"
     ]

@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import { ReactQueryDevtools } from 'react-query/devtools'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import styled from 'styled-components'
 import { useAuthContext } from '../auth-context'
 import AppRoutes from './AppRoutes'

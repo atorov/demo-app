@@ -70,6 +70,9 @@ const SideBar = () => {
             <CustomStyledNavLink to="/paginated-data">
                 Paginated
             </CustomStyledNavLink>
+            <CustomStyledNavLink to="/infinite-queries">
+                Infinite
+            </CustomStyledNavLink>
         </CustomStyledSideBar>
     )
 }

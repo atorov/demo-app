@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { useQuery, useQueryClient } from 'react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import StyledText from '../../../../../shared/components/styled/Text'
 import type { Task } from '../../../../../shared/types/tasks'
 import { useAppContext } from '../../../../app-context'
@@ -22,7 +22,7 @@ const Details = () => {
         ({ queryKey }) => getOneTask(`${appData.api.baseUrl}/tasks/${queryKey[1]}`, String(authData.data?.accessToken)),
         {
             initialData: () => {
-                const t = queryClient.getQueryData<Task[]>('tasks')?.find((it) => it.id === params.taskId)
+                const t = queryClient.getQueryData<Task[]>(['tasks'])?.find((it) => it.id === params.taskId)
                 if (!t) return undefined
                 return {
                     ...t,

@@ -15,6 +15,7 @@ const CChatLayout = React.lazy(() => import('./chat/Layout'))
 const CChatRoom = React.lazy(() => import('./chat/Room'))
 const CDashboard = React.lazy(() => import('./Dashboard'))
 const CLogin = React.lazy(() => import('./Login'))
+const CInfiniteQueries = React.lazy(() => import('./InfiniteQueries'))
 const CPaginatedData = React.lazy(() => import('./PaginatedData'))
 const CTaskDetails = React.lazy(() => import('./tasks/Details'))
 const CTasksLayout = React.lazy(() => import('./tasks/Layout'))
@@ -97,6 +98,14 @@ const AppRoutes = () => (
                         element={(
                             <PrivateRoute>
                                 <CPaginatedData />
+                            </PrivateRoute>
+                        )}
+                    />
+                    <Route
+                        path="infinite-queries"
+                        element={(
+                            <PrivateRoute>
+                                <CInfiniteQueries />
                             </PrivateRoute>
                         )}
                     />

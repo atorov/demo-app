@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useQuery, useQueries } from 'react-query'
+import { useQuery, useQueries } from '@tanstack/react-query'
 import StyledButton from '../../../../../shared/components/styled/Button'
 import StyledText from '../../../../../shared/components/styled/Text'
 import type { Task } from '../../../../../shared/types/tasks'
@@ -42,7 +42,7 @@ const Tasks = () => {
         refetch: refetchTasks,
         remove: removeTasks,
     } = useQuery<Task[], Error>(
-        'tasks',
+        ['tasks'],
         () => getAllTasks(`${appData.api.baseUrl}/tasks`, String(authData.data?.accessToken)),
         {
             // enabled: false, // default: true
@@ -78,7 +78,7 @@ const Tasks = () => {
 
     // Another one, in parallel
     useQuery<Task[], Error>(
-        'health',
+        ['health'],
         async () => {
             const res = await fetch(`${appData.api.baseUrl}/../health`)
             if (res.status !== 200) {
@@ -97,10 +97,12 @@ const Tasks = () => {
     )
 
     // Dynamic dependant parallel queries
-    useQueries<Task[]>((tasks ?? []).map((it) => ({
-        queryKey: ['dpq-task', it.id],
-        queryFn: ({ queryKey }) => getOneTask(`${appData.api.baseUrl}/tasks/${queryKey[1]}`, String(authData.data?.accessToken)),
-    })))
+    useQueries({
+        queries: (tasks || []).filter((_, idx) => !(idx % 2)).map((it) => ({
+            queryKey: ['dpq-task', it.id],
+            queryFn: ({ queryKey }: { queryKey: string[] }) => getOneTask(`${appData.api.baseUrl}/tasks/${queryKey[1]}`, String(authData.data?.accessToken)),
+        })),
+    })
 
     // Dependant query
     const firstTaskInProgressId: string | undefined = tasksInProgress[0]?.id

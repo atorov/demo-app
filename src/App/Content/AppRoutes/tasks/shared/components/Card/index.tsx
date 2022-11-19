@@ -8,6 +8,7 @@ import type { Task } from '../../../../../../../shared/types/tasks'
 type CardProps = {
     task: Task
     showButtons?: boolean
+    handleStatusChange?: () => void
 }
 
 const CustomStyledButton = styled(StyledButton)<CardProps>`
@@ -56,22 +57,26 @@ const Card = (props: CardProps) => (
         {props.showButtons ? (
             <>
                 <br />
-                <Link to={`${props.task.id}`}>
-                    View details
-                </Link>
-                &nbsp;|&nbsp;
+                {!props.task.isCachedFromOptimisticUpdate ? (
+                    <>
+                        <Link to={`${props.task.id}`}>
+                            View details
+                        </Link>
+                        &nbsp;|&nbsp;
+                    </>
+                ) : null}
                 {props.task.status === 'todo' ? (
-                    <CustomStyledButton {...props}>
+                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
                         Start this task
                     </CustomStyledButton>
                 ) : null}
                 {props.task.status === 'in_progress' ? (
-                    <CustomStyledButton {...props}>
+                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
                         Complete this task
                     </CustomStyledButton>
                 ) : null}
                 {props.task.status === 'done' ? (
-                    <CustomStyledButton {...props}>
+                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
                         Delete this task
                     </CustomStyledButton>
                 ) : null}
@@ -82,6 +87,7 @@ const Card = (props: CardProps) => (
 
 Card.defaultProps = {
     showButtons: true,
+    handleStatusChange: () => {},
 }
 
 export default Card

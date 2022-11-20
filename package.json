@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "private": true,
   "description": "Demo App",
   "repository": {
@@ -41,6 +41,7 @@
     "esbuild-register": "^3.3.3",
     "express": "^4.18.1",
     "helmet": "^6.0.0",
+    "nanoid": "^4.0.0",
     "node-cache": "^5.1.2",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",

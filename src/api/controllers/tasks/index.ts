@@ -1,4 +1,5 @@
 import type { Response, Request } from 'express'
+import { nanoid } from 'nanoid'
 import type { DbTasks, DbTaskItemValue, Task } from '../../../shared/types/tasks'
 
 declare const tasks: DbTasks
@@ -9,7 +10,7 @@ export async function createOneTask(req: Request, res: Response) {
     })
     try {
         const reqData: DbTaskItemValue = req.body
-        const id: string = String(tasks.size + 1)
+        const id = nanoid()
         tasks.set(id, reqData)
         const savedData = tasks.get(id)
         if (!savedData) return res.status(400).send()

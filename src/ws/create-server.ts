@@ -8,7 +8,7 @@ function createServer(port?: string) {
     const server = new WebSocketServer(
         { port: Number(port) },
         () => {
-            console.log(`Server running on port ${port}...`)
+            console.log(`::: Server running on port ${port}...`)
         },
     )
 

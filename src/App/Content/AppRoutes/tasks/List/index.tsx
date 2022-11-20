@@ -144,7 +144,7 @@ const Tasks = () => {
             //     console.log('::: Tasks loaded: ', data)
             // },
             // onError: (reason) => {
-            //     console.log('::: Error:', reason.message)
+            //     console.error('::: Error:', reason.message)
             // },
             select: (data) => data.map((it) => ({ ...it, fetchedAt: Date.now() })),
         },
@@ -179,7 +179,7 @@ const Tasks = () => {
                 console.log('::: Health status loaded: ', data)
             },
             onError: (reason) => {
-                console.log('::: Health status loading error:', reason.message)
+                console.error('::: Health status loading error:', reason.message)
             },
         },
     )

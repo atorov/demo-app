@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import ErrorBoundary from '../../../../../../../shared/components/ErrorBoundary'
 import StyledButton from '../../../../../../../shared/components/styled/Button'
 import StyledText from '../../../../../../../shared/components/styled/Text'
+import { TaskSchema } from '../../../../../../../shared/types/tasks'
 import type { Task } from '../../../../../../../shared/types/tasks'
 
 type CardProps = {
@@ -29,65 +31,80 @@ const CustomStyledTask = styled.div<CardProps>`
     }
 `
 
-const Card = (props: CardProps) => (
-    <CustomStyledTask {...props}>
-        <StyledText as="p">
-            {props.task.name}
-        </StyledText>
-        <StyledText as="em">
-            {props.task.description}
-        </StyledText>
-        <StyledText as="p">
-            {`Categories: ${props.task.categories?.join(', ') || '-'}`}
-        </StyledText>
-        <StyledText as="p">
-            {`Status: ${props.task.status}`}
-        </StyledText>
-        <StyledText as="p">
-            {`Created at: ${new Date(props.task.createdAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}, Updated at: ${props.task.updatedAt ? new Date(props.task.updatedAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '-'}`}
-        </StyledText>
-        {props.task.fetchedAt ? (
+const Card = (props: CardProps) => {
+    const parsedTask = TaskSchema.parse(props.task)
+
+    return (
+        <CustomStyledTask {...props} task={parsedTask}>
             <StyledText as="p">
-                {`Fetched at: ${new Date(props.task.fetchedAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}`}
+                {parsedTask.name}
             </StyledText>
-        ) : null}
-        <StyledText as="p">
-            {`It is cached from the tasks list: ${Boolean(props.task.isCachedFromTheList)}`}
-        </StyledText>
-        {props.showButtons ? (
-            <>
-                <br />
-                {!props.task.isCachedFromOptimisticUpdate ? (
-                    <>
-                        <Link to={`${props.task.id}`}>
-                            View details
-                        </Link>
+            <StyledText as="em">
+                {parsedTask.description}
+            </StyledText>
+            <StyledText as="p">
+                {`Categories: ${parsedTask.categories?.join(', ') || '-'}`}
+            </StyledText>
+            <StyledText as="p">
+                {`Status: ${parsedTask.status}`}
+            </StyledText>
+            <StyledText as="p">
+                {`Created at: ${new Date(parsedTask.createdAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}, Updated at: ${parsedTask.updatedAt ? new Date(parsedTask.updatedAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '-'}`}
+            </StyledText>
+            {parsedTask.fetchedAt ? (
+                <StyledText as="p">
+                    {`Fetched at: ${new Date(parsedTask.fetchedAt).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}`}
+                </StyledText>
+            ) : null}
+            <StyledText as="p">
+                {`It is cached from the tasks list: ${Boolean(parsedTask.isCachedFromTheList)}`}
+            </StyledText>
+            {props.showButtons ? (
+                <>
+                    <br />
+                    {!parsedTask.isCachedFromOptimisticUpdate ? (
+                        <>
+                            <Link to={`${parsedTask.id}`}>
+                                View details
+                            </Link>
                         &nbsp;|&nbsp;
-                    </>
-                ) : null}
-                {props.task.status === 'todo' ? (
-                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
-                        Start this task
-                    </CustomStyledButton>
-                ) : null}
-                {props.task.status === 'in_progress' ? (
-                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
-                        Complete this task
-                    </CustomStyledButton>
-                ) : null}
-                {props.task.status === 'done' ? (
-                    <CustomStyledButton {...props} onClick={props.handleStatusChange}>
-                        Delete this task
-                    </CustomStyledButton>
-                ) : null}
-            </>
-        ) : null}
-    </CustomStyledTask>
-)
+                        </>
+                    ) : null}
+                    {parsedTask.status === 'todo' ? (
+                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                            Start this task
+                        </CustomStyledButton>
+                    ) : null}
+                    {parsedTask.status === 'in_progress' ? (
+                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                            Complete this task
+                        </CustomStyledButton>
+                    ) : null}
+                    {parsedTask.status === 'done' ? (
+                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                            Delete this task
+                        </CustomStyledButton>
+                    ) : null}
+                </>
+            ) : null}
+        </CustomStyledTask>
+    )
+}
 
 Card.defaultProps = {
     showButtons: true,
     handleStatusChange: () => {},
 }
 
-export default Card
+const CardWrapper = (props: CardProps) => (
+    <ErrorBoundary>
+        <Card {...props} />
+    </ErrorBoundary>
+)
+
+CardWrapper.defaultProps = {
+    showButtons: true,
+    handleStatusChange: () => {},
+}
+
+export default CardWrapper

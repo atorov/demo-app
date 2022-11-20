@@ -5,7 +5,7 @@ import {
     Route,
     Routes,
 } from 'react-router-dom'
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from '../../../shared/components/ErrorBoundary'
 import Fallback from './Fallback'
 import PrivateRoute from './PrivateRoute'
 

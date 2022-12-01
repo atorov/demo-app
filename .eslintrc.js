@@ -74,6 +74,7 @@ module.exports = {
         'react/no-array-index-key': 0,
         'react/prefer-stateless-function': 0,
         'react/react-in-jsx-scope': 'off',
+        'react/require-default-props': 'off',
 
         'react/jsx-filename-extension': [2, { extensions: ['.jsx', '.tsx'] }],
         'react/jsx-indent': ['error', 4],

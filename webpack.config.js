@@ -9,20 +9,21 @@ const pkg = require('./package.json')
 module.exports = (env) => {
     const APP_NAME = pkg.name
     const APP_VERSION = pkg.version
-    const {
-        HOST = process.env.HOST || '0.0.0.0',
-        PORT = process.env.PORT || 8080,
-        BUILD_ENV = process.env.BUILD_ENV || 'production',
-    } = env
+
     const { NODE_ENV } = process.env
+    const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
+
+    const BUILD_ENV = env.BUILD_ENV || 'production'
+    const HOST = env.HOST || '0.0.0.0'
+    const PORT = env.PORT || 8080
+
     const SRC = path.resolve(__dirname, 'src')
     const DIST = path.resolve(__dirname, 'build/public')
+
     const NODE_MODULES = path.resolve(__dirname, 'node_modules')
     const EXTERNALS = path.resolve(__dirname, 'externals')
     const STORAGE = path.resolve(__dirname, '__storage__')
-
     const EXCLUDE_DEFAULT = [NODE_MODULES, EXTERNALS, STORAGE]
-    const MODE = NODE_ENV !== 'development' ? 'production' : 'development'
 
     const config = {
         mode: MODE,
@@ -52,7 +53,6 @@ module.exports = (env) => {
                                 'sass-loader',
                             ]
                         }
-
                         return [
                             MiniCssExtractPlugin.loader,
                             'css-loader',
@@ -84,7 +84,7 @@ module.exports = (env) => {
                 MODE: JSON.stringify(MODE),
                 NODE_ENV: JSON.stringify(NODE_ENV),
                 BUILD_ENV: JSON.stringify(BUILD_ENV),
-            // process: JSON.stringify({}), <-- This causes big troubles with styled-components library!
+                // process: JSON.stringify({}), <-- This causes big troubles with styled-components library!
             }),
             new HtmlWebpackPlugin({
                 filename: `${DIST}/index.html`,

@@ -1,6 +1,6 @@
 {
   "name": "demo-app",
-  "version": "1.13.1",
+  "version": "1.14.2",
   "private": true,
   "description": "Demo App",
   "repository": {
@@ -43,7 +43,6 @@
     "helmet": "^6.0.0",
     "nanoid": "^4.0.0",
     "node-cache": "^5.1.2",
-    "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.6.0",

@@ -1,35 +1,34 @@
-import { Component } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import React, { Component } from 'react'
 
-class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>, any> {
-    // eslint-disable-next-line react/static-property-placement
-    public static propTypes: any = {
-        children: PropTypes.oneOfType([
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.node,
-        ]).isRequired,
-    }
+type Props = {
+    children: React.ReactNode
+}
 
-    constructor(props: any) {
+interface State {
+    hasError: boolean
+    error?: Error
+}
+
+class ErrorBoundary extends Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = {
             hasError: false,
-            error: null,
         }
     }
 
-    static getDerivedStateFromError(error: any) {
+    public static getDerivedStateFromError(error: Error): State {
         return {
             hasError: true,
             error,
         }
     }
 
-    async componentDidCatch(error: any, info: any) {
+    public async componentDidCatch(error: Error, info: React.ErrorInfo) {
         console.error('::: Error:', error, info)
     }
 
-    render() {
+    public render() {
         if (!this.state.hasError) {
             return this.props.children
         }

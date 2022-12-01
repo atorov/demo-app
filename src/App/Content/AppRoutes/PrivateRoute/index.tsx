@@ -5,12 +5,12 @@ type TProps = {
     children: JSX.Element
 }
 
-const PrivateRoute = (props: TProps) => {
+const PrivateRoute = ({ children }: TProps) => {
     const [, , { isAuth }] = useAuthContext()
     const location = useLocation()
 
     if (isAuth) {
-        return props.children
+        return children
     }
 
     return (

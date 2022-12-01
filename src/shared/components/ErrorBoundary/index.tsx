@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
+import type { ReactElement, ErrorInfo } from 'react'
 
 type Props = {
-    children: React.ReactNode
+    children: ReactElement
 }
 
 interface State {
@@ -24,7 +25,7 @@ class ErrorBoundary extends Component<Props, State> {
         }
     }
 
-    public async componentDidCatch(error: Error, info: React.ErrorInfo) {
+    public async componentDidCatch(error: Error, info: ErrorInfo) {
         console.error('::: Error:', error, info)
     }
 

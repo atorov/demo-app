@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { ReactElement } from 'react'
 import deepEqual from 'deep-equal'
 import buildContext from '../build-context'
 
@@ -34,23 +35,27 @@ function saveData<Data>(storageKey: string, data: Data) {
 }
 
 type ProviderInnerWrapperProps<Data> = {
-    children: React.ReactNode
+    children: ReactElement
     initialData: Data
     storageKey: string
     useContext: () => [Data, React.Dispatch<React.SetStateAction<Data>>]
 }
 
-const ProviderInnerWrapper = <Data, >(props: ProviderInnerWrapperProps<Data>) => {
-    const prevDataRef = React.useRef(props.initialData)
-    const [data] = props.useContext()
+const ProviderInnerWrapper = <Data, >({
+    children,
+    initialData,
+    storageKey,
+    useContext,
+}: ProviderInnerWrapperProps<Data>) => {
+    const prevDataRef = React.useRef(initialData)
+    const [data] = useContext()
     React.useEffect(() => {
         if (!deepEqual(prevDataRef.current, data, { strict: true })) {
             prevDataRef.current = data
-            saveData(props.storageKey, data)
+            saveData(storageKey, data)
         }
-    }, [data, props.storageKey])
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    return <>{props.children}</>
+    }, [data, storageKey])
+    return children
 }
 
 function buildLsPersistedContext<Data>({
@@ -64,14 +69,14 @@ function buildLsPersistedContext<Data>({
 }) {
     const persistedData = getPersistedData(storageKey, initialData)
     const { Provider, useContext } = buildContext({ displayName, initialData: persistedData })
-    const CustomizedProvider = (props: { children: React.ReactNode }) => (
+    const CustomizedProvider = ({ children }: { children: ReactElement }) => (
         <Provider>
             <ProviderInnerWrapper
                 initialData={persistedData}
                 storageKey={storageKey}
                 useContext={useContext}
             >
-                {props.children}
+                {children}
             </ProviderInnerWrapper>
         </Provider>
     )

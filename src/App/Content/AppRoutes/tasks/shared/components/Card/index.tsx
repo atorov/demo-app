@@ -13,14 +13,14 @@ type CardProps = {
     handleStatusChange?: () => void
 }
 
-const CustomStyledButton = styled(StyledButton)<CardProps>`
+const CustomStyledButton = styled(StyledButton)<{ handleStatusChange?: () => void }>`
     & {
         background: none;
         color: white !important;
     }
 `
 
-const CustomStyledTask = styled.div<CardProps>`
+const CustomStyledTask = styled.div<{ task: Task }>`
     margin: 0.5rem 0;
     padding: 0.5rem;
     border: ${(props) => `1px solid ${props.task.status !== 'done' ? props.theme.palette.border.accent : props.theme.palette.border.primary}`};
@@ -31,11 +31,15 @@ const CustomStyledTask = styled.div<CardProps>`
     }
 `
 
-const Card = (props: CardProps) => {
-    const parsedTask = TaskSchema.parse(props.task)
+const Card = ({
+    task,
+    showButtons = true,
+    handleStatusChange = () => {},
+}: CardProps) => {
+    const parsedTask = TaskSchema.parse(task)
 
     return (
-        <CustomStyledTask {...props} task={parsedTask}>
+        <CustomStyledTask task={parsedTask}>
             <StyledText as="p">
                 {parsedTask.name}
             </StyledText>
@@ -59,7 +63,7 @@ const Card = (props: CardProps) => {
             <StyledText as="p">
                 {`It is cached from the tasks list: ${Boolean(parsedTask.isCachedFromTheList)}`}
             </StyledText>
-            {props.showButtons ? (
+            {showButtons ? (
                 <>
                     <br />
                     {!parsedTask.isCachedFromOptimisticUpdate ? (
@@ -71,17 +75,17 @@ const Card = (props: CardProps) => {
                         </>
                     ) : null}
                     {parsedTask.status === 'todo' ? (
-                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                        <CustomStyledButton onClick={handleStatusChange}>
                             Start this task
                         </CustomStyledButton>
                     ) : null}
                     {parsedTask.status === 'in_progress' ? (
-                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                        <CustomStyledButton onClick={handleStatusChange}>
                             Complete this task
                         </CustomStyledButton>
                     ) : null}
                     {parsedTask.status === 'done' ? (
-                        <CustomStyledButton {...props} onClick={props.handleStatusChange}>
+                        <CustomStyledButton onClick={handleStatusChange}>
                             Delete this task
                         </CustomStyledButton>
                     ) : null}
@@ -91,20 +95,14 @@ const Card = (props: CardProps) => {
     )
 }
 
-Card.defaultProps = {
-    showButtons: true,
-    handleStatusChange: () => {},
-}
-
-const CardWrapper = (props: CardProps) => (
+const CardWrapper = ({
+    task,
+    showButtons = true,
+    handleStatusChange = () => {},
+}: CardProps) => (
     <ErrorBoundary>
-        <Card {...props} />
+        <Card {...{ task, showButtons, handleStatusChange }} />
     </ErrorBoundary>
 )
-
-CardWrapper.defaultProps = {
-    showButtons: true,
-    handleStatusChange: () => {},
-}
 
 export default CardWrapper

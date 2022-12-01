@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { ReactElement } from 'react'
 
 function buildContext<Data, ChildrenProps>({
     displayName,
@@ -14,7 +15,7 @@ function buildContext<Data, ChildrenProps>({
     const Context = React.createContext(defaultContextValue)
     Context.displayName = displayName
 
-    const Provider = (props: { children: React.ReactNode } & ChildrenProps) => {
+    const Provider = (props: { children: ReactElement } & ChildrenProps) => {
         const [data, setData] = React.useState<Data>(initialData)
         const value: typeof defaultContextValue = React.useMemo(() => [data, setData], [data])
         const { children, ...childrenProps } = props
